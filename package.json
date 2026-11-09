@@ -17,6 +17,7 @@
     "test:watch": "vitest",
     "test:db": "supabase test db",
     "test:e2e": "playwright test",
+    "screenshots": "OURS_SCREENSHOTS=1 playwright test e2e/screenshots.spec.ts",
     "check:repo": "node scripts/check-repository-content.mjs",
     "check:bundle": "node scripts/check-browser-secrets.mjs",
     "verify": "npm run lint && npm run test && npm run build && npm run check:repo && npm run check:bundle"

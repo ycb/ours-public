@@ -6,6 +6,8 @@ import { defineConfig, devices } from "@playwright/test";
  */
 export default defineConfig({
   testDir: "./e2e",
+  // README screenshots run only on request (`npm run screenshots`), never in the test suite.
+  testIgnore: process.env.OURS_SCREENSHOTS ? [] : ["**/screenshots.spec.ts"],
   fullyParallel: false,
   workers: 1,
   retries: 0,
