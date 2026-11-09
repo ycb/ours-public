@@ -1,0 +1,9 @@
+# Lessons
+
+- When a technically capable founder has a clear personal use case, prefer the standard product sequence—build for personal use, share with trusted friends, then run a private beta—over inventing a formal research or concierge phase before it is needed.
+- Match safeguards to the product stage. For a personal alpha, prioritize speed and learning over production-grade security, while retaining only inexpensive basics that prevent accidental exposure and avoid obvious architectural dead ends.
+- When creating a JavaScript/Vite repository, recommend adding the Node `.gitignore` at initialization (or creating an equivalent before installing or configuring anything). An empty initial history is less important than preventing accidental commits of dependencies, build output, local environment files, and editor artifacts.
+- Derive a JavaScript project's declared Node engine from the intersection of the installed toolchain's engine ranges, including excluded major versions; a broad lower bound can claim support that core tools do not provide.
+- In a Testing Library harness, register cleanup explicitly and keep application TypeScript types free of test-runner globals when tests use explicit imports.
+- Treat SMTP handshake metadata as part of a privacy review. Mail catchers preserve the client hostname in raw `Received` headers, so a personal machine name can leak even when the application subject and body are content-free. Set and test a generic SMTP client name, then inspect the raw message rather than only the rendered body.
+- Do not describe an SMTP-backed database outbox as exactly-once delivery. The send and database acknowledgement cannot commit atomically, so a crash between them can duplicate a retry. Promise one durable intent and at-least-once delivery; use a deterministic, content-free Message-ID to support downstream deduplication.
