@@ -1,4 +1,4 @@
--- Interaction model v2 (docs/plans/2026-10-25-interaction-model-v2.md):
+-- Interaction model v2: lifecycle for shared items.
 -- private drafts, submit = author Ready, co-editing with review reset and stale-save
 -- protection, Not now with a required reason, per-member seen state, author delete.
 

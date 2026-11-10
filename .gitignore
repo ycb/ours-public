@@ -166,3 +166,6 @@ supabase/.temp/
 
 # Private local backups
 private-backups/
+
+# Agent plans and session logs stay local (see AGENTS.md)
+docs/plans/

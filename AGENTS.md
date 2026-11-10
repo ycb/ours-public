@@ -1,27 +1,23 @@
 # Agent Working Agreement (Codex and Claude)
 
 This repository is built alternately by Codex and Claude. Either agent must be able to stop at any
-commit and let the other continue without re-reading the conversation that produced it. Git and the
-documents below are the only shared memory.
+commit and let the other continue without re-reading the conversation that produced it.
+
+Plans and the session log live in `docs/plans/`, which is git-ignored: they keep agents on track and
+are not published. Keep the current ExecPlan there, with **Progress**, **Decision Log**, **Surprises**
+and **Session Log** sections.
 
 ## Read first, every session
 
-1. `README.md` — what the product is and why; privacy boundaries are under **Hard boundaries** below.
-2. `docs/plans/2026-10-23-personal-alpha-mvp-implementation.md` (the ExecPlan) — read
-   **Progress**, **Session Log** (newest entry first), and the task you are about to start.
-3. `docs/plans/2026-10-25-interaction-model-v2.md`, then `docs/plans/2026-10-23-personal-alpha-mvp-design.md` — the build contract. Where they differ, v2 wins.
-4. `docs/learnings.md`.
-5. `git log --oneline -15` and `git status` on `main`. If the working tree is
-   dirty, the previous session ended mid-task: read the latest Session Log entry before touching it.
-
-Do not redo work whose Progress box is checked and whose evidence is recorded. If a box is checked but
-evidence is missing, re-run that task's verification instead of re-implementing it.
+1. `README.md`: what the product is and why. Privacy rules are under **Hard boundaries** below.
+2. The current ExecPlan in `docs/plans/`, if one exists: **Progress**, the newest **Session Log**
+   entry, and the task you are about to start.
+3. `git log --oneline -15` and `git status` on `main`. If the working tree is dirty, the previous
+   session ended mid-task: read the latest Session Log entry before touching it.
 
 ## Where work happens
 
 - Work happens on `main`. Do not create per-agent branches.
-- This public repository started from a snapshot of the private build (see the README). The ExecPlan and
-  Session Log keep the history of how it was built; older entries mention the private branch and paths.
 
 ## Unit of work
 

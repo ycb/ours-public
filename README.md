@@ -27,9 +27,8 @@ choose the ones they both want, and turn them into dates.
 ## How it was built
 
 One person directing two AI coding agents, Codex and Claude, taking turns on one codebase. They worked
-under a written [working agreement](AGENTS.md), tests first, with a shared
-[plan and handoff log](docs/plans/2026-10-23-personal-alpha-mvp-implementation.md) either agent could
-pick up from. It went from first commit to real use in a week.
+under a written [working agreement](AGENTS.md): tests first, and a shared plan and handoff log either
+agent could pick up from. It went from first commit to real use in a week.
 
 - React 19, TypeScript, Vite; Supabase (Postgres row-level security, pg_cron + Edge Function email).
 - 281 unit and component tests, 1,108 database assertions on access and isolation, and 7 end-to-end
