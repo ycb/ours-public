@@ -88,7 +88,7 @@ test("README screenshots", async ({ browser }) => {
   });
   const cook = await share(alex, SAM.name, {
     title: COOK,
-    description: "Fold them together, a cuisine neither of us has cooked. Music on, flour everywhere.",
+    description: "Fold them from scratch together. Music on, flour everywhere.",
     category: "At home",
     newCategory: true,
     rating: "Into it",
