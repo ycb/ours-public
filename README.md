@@ -1,32 +1,28 @@
 # Ours
 
-**Plan time together, for two.**
+**Strengthening relationships through candid conversation and shared time.**
 
-Relationships grow in shared time, and most of it never gets planned. The good ideas end up scattered
-across texts and "we should do that sometime". Ours gives two people one place to collect those ideas,
-choose the ones they both want, and turn them into dates.
+What if technology enhanced our most valued connections, instead of distracting from them?
+
+I built a PWA for couples to make and discuss plans together. Share ideas, see where interest is
+mutual, align, and make it happen. Afterwards, reflect on the experience and create variations.
 
 <p>
-  <img src="docs/screenshots/01-ideas.png" width="200" alt="Ideas from both of you, and whose turn it is">
-  <img src="docs/screenshots/05-idea.png" width="200" alt="An idea you both chose">
-  <img src="docs/screenshots/03-card.png" width="200" alt="Dealing a card from your shared list">
-  <img src="docs/screenshots/06-reflect.png" width="200" alt="Looking back on a date">
+  <img src="docs/screenshots/01-idea.png" width="250" alt="An idea you're both in on, ready to plan">
+  <img src="docs/screenshots/02-date.png" width="250" alt="The same idea dealt from your shared deck, and made a date for tonight">
+  <img src="docs/screenshots/03-reflect.png" width="250" alt="Looking back on it together afterwards">
 </p>
 
 ## What's different
 
-- **Made for two.** Each of you adds ideas and answers the other's. Plan only holds what you both
-  chose.
-- **A little surprise.** Instead of debating what to do, deal a card from your shared list, pick a
-  night, and it's on both phones.
-- **Dates build on each other.** Afterwards, each of you shares a favorite moment and one thing for next
-  time. Good dates become new ideas.
+- **A little surprise.** Instead of debating what to do, deal a card from the ideas you both chose.
+  Pick a night, and it's on both phones.
 - **Private.** Each couple's space is walled off in the database, and email only says something's
   waiting.
 
 ## How it was built
 
-One person directing two AI coding agents, Codex and Claude, taking turns on one codebase. They worked
+I directed two AI coding agents, Codex and Claude, taking turns on one codebase. They worked
 under a written [working agreement](AGENTS.md): tests first, and a shared plan and handoff log either
 agent could pick up from. It went from first commit to real use in a week.
 

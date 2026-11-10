@@ -1,7 +1,8 @@
 /**
  * README screenshots, from a fresh local stack with synthetic demo content. Not part of
  * `npm run test:e2e`; run it alone with `npm run screenshots` after
- * `npx supabase db reset && npm run dev:accounts`. Writes docs/screenshots/*.png at phone size.
+ * `npx supabase db reset && npm run dev:accounts`. Writes docs/screenshots/*.png at phone size:
+ * one idea followed across three views.
  *
  * Everything here is invented: two synthetic partners renamed Alex and Sam in the local database,
  * and made-up date ideas.
@@ -121,20 +122,27 @@ test("README screenshots", async ({ browser }) => {
   // ---------- Answers ----------
   await imIn(sam, hike, SAM.memberId, "Into it");
   await imIn(sam, cook, SAM.memberId, "Very");
-  await imIn(alex, letters, ALEX.memberId, "Very");
   await sam.goto(`/ideas/${dance}`);
   await sam.getByRole("button", { name: "Maybe later" }).click();
   await sam.getByLabel(/Anything you.d want to talk about first\?/).fill("Yes, once work calms down. Spring?");
   await sam.getByRole("button", { name: "Suggest Later" }).click();
   await expect.poll(() => decision(dance, SAM.memberId)).toBe("not_now");
-  void phones;
-  void stars;
+  void [stars, phones, letters];
 
-  // ---------- A date that happened, and Sam's reflection ----------
+  // ---------- One idea, three views: agreed, dealt and dated, looked back on ----------
   await alex.goto(`/ideas/${cook}`);
-  await alex.getByRole("button", { name: "Plan this" }).click();
+  await expect(alex.getByText(/You.re both in/)).toBeVisible();
+  await shot(alex, "01-idea");
+
+  await alex.goto("/plan");
+  await alex.getByRole("group", { name: "Filter ideas" }).getByRole("button", { name: "At home" }).click();
+  await alex.getByRole("button", { name: "Deal a card" }).click();
+  await expect(alex.getByRole("heading", { level: 2, name: COOK })).toBeVisible();
+  await alex.getByRole("button", { name: "Let's do it" }).click();
   await alex.getByRole("group", { name: "When?" }).getByRole("button", { name: "Tonight" }).click();
-  await expect(alex.getByText("Up next · Tonight")).toBeVisible();
+  await expect(alex.getByRole("group", { name: "When?" }).getByRole("button", { name: "Tonight" })).toHaveAttribute("aria-pressed", "true");
+  await shot(alex, "02-date");
+
   await sam.goto("/plan");
   await sam.getByRole("button", { name: `Up next: ${COOK}, Tonight` }).click();
   await sam.getByRole("dialog", { name: COOK }).getByRole("button", { name: "We did it" }).click();
@@ -152,30 +160,5 @@ test("README screenshots", async ({ browser }) => {
   const alexSheet = alex.getByRole("dialog", { name: `How was ${COOK}?` });
   await expect(alexSheet.getByText("Start earlier. We ate at ten.")).toBeVisible();
   await alexSheet.getByLabel("What did you enjoy?").fill("Getting lost in a market neither of us knew.");
-  await shot(alex, "06-reflect");
-  await alexSheet.getByRole("button", { name: `Share with ${SAM.name}` }).click();
-  await expect(alexSheet).toHaveCount(0);
-
-  // ---------- Plan: deal a card, make it a date ----------
-  await alex.goto("/plan");
-  await alex.getByRole("group", { name: "Filter ideas" }).getByRole("button", { name: "Outdoors" }).click();
-  await alex.getByRole("button", { name: "Deal a card" }).click();
-  await expect(alex.getByRole("heading", { level: 2, name: HIKE })).toBeVisible();
-  await shot(alex, "03-card");
-  await alex.getByRole("button", { name: "Let's do it" }).click();
-  await alex.getByRole("group", { name: "When?" }).getByRole("button", { name: "This weekend" }).click();
-  await expect(alex.getByRole("group", { name: "When?" }).getByRole("button", { name: "This weekend" })).toHaveAttribute("aria-pressed", "true");
-  await shot(alex, "04-date");
-
-  await alex.goto("/plan");
-  await expect(alex.getByRole("button", { name: `Up next: ${HIKE}, This weekend` })).toBeVisible();
-  await shot(alex, "02-plan");
-
-  // ---------- Ideas and one idea, as Alex ----------
-  await alex.goto("/ideas");
-  await expect(alex.getByRole("list", { name: "Ideas" }).getByText(PHONES)).toBeVisible();
-  await shot(alex, "01-ideas");
-  await alex.goto(`/ideas/${letters}`);
-  await expect(alex.getByText("Plan this")).toBeVisible();
-  await shot(alex, "05-idea");
+  await shot(alex, "03-reflect");
 });
