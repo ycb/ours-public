@@ -7,6 +7,7 @@
  * Everything here is invented: two synthetic partners renamed Alex and Sam in the local database,
  * and made-up date ideas.
  */
+import { readFileSync } from "node:fs";
 import { expect, test, type Browser, type Page } from "@playwright/test";
 import { COUPLE_ID, PARTNER_A, PARTNER_B, PASSWORD, idFromUrl, psql, sql } from "./local";
 
@@ -65,6 +66,7 @@ async function imIn(page: Page, itemId: string, memberId: string, rating?: strin
 }
 
 async function shot(page: Page, name: string) {
+  await page.mouse.move(0, 0);
   await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
   await page.waitForTimeout(600);
   await page.screenshot({ path: `${OUT}/${name}.png` });
@@ -88,7 +90,7 @@ test("README screenshots", async ({ browser }) => {
   });
   const cook = await share(alex, SAM.name, {
     title: COOK,
-    description: "Fold them from scratch together. Music on, flour everywhere.",
+    description: "Fold dumplings from scratch together. Music on, flour everywhere.",
     category: "At home",
     newCategory: true,
     rating: "Into it",
@@ -141,7 +143,13 @@ test("README screenshots", async ({ browser }) => {
   await alex.getByRole("button", { name: "Let's do it" }).click();
   await alex.getByRole("group", { name: "When?" }).getByRole("button", { name: "Tonight" }).click();
   await expect(alex.getByRole("group", { name: "When?" }).getByRole("button", { name: "Tonight" })).toHaveAttribute("aria-pressed", "true");
-  await shot(alex, "02-date");
+  await alex.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+  await alex.waitForTimeout(600);
+  {
+    // The dealt card and its controls, with room for the card's shadow to fall on the page.
+    const box = (await alex.locator(".spin-panel").boundingBox())!;
+    await alex.screenshot({ path: `${OUT}/02-date.png`, clip: { x: box.x - 16, y: box.y - 24, width: box.width + 32, height: box.height + 48 } });
+  }
 
   await sam.goto("/plan");
   await sam.getByRole("button", { name: `Up next: ${COOK}, Tonight` }).click();
@@ -161,4 +169,17 @@ test("README screenshots", async ({ browser }) => {
   await expect(alexSheet.getByText("Start earlier. We ate at ten.")).toBeVisible();
   await alexSheet.getByLabel("What did you enjoy?").fill("Getting lost in a market neither of us knew.");
   await shot(alex, "03-reflect");
+
+  // ---------- One image for the README: three views side by side ----------
+  const src = (name: string) => `data:image/png;base64,${readFileSync(`${OUT}/${name}.png`).toString("base64")}`;
+  const tile = "width:390px;height:844px;border-radius:28px;overflow:hidden;background:#f4eee7;border:1px solid #d7c8bb";
+  const strip = await (await browser.newContext({ viewport: { width: 1222, height: 846 }, deviceScaleFactor: 2 })).newPage();
+  await strip.setContent(`<body style="margin:0;background:transparent">
+    <div style="display:flex;gap:24px">
+      <div style="${tile}"><img src="${src("01-idea")}" style="width:390px;display:block"></div>
+      <div style="${tile};display:flex;align-items:center;box-sizing:border-box"><img src="${src("02-date")}" style="width:100%;display:block"></div>
+      <div style="${tile}"><img src="${src("03-reflect")}" style="width:390px;display:block"></div>
+    </div></body>`);
+  await strip.waitForTimeout(300);
+  await strip.screenshot({ path: `${OUT}/ours.png`, omitBackground: true });
 });

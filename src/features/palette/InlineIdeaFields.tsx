@@ -288,7 +288,7 @@ export function InlineIdeaFields({
           aria-label="Description"
           placeholder="Add details…"
           className="inline-description"
-          rows={2}
+          rows={1}
           value={values.description}
           aria-invalid={errors.description ? true : undefined}
           aria-describedby={errors.description ? ids.descriptionError : undefined}

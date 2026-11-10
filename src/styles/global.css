@@ -1516,6 +1516,21 @@ textarea:focus-visible {
   perspective: 1200px;
 }
 
+.roulette-status {
+  margin: 0;
+}
+
+/* Empty, it stays mounted for screen readers but takes no space. */
+.roulette-status:empty {
+  position: absolute;
+}
+
+/* A dealt card stands on its own, not inside the deck's panel. */
+.spin-panel.has-result {
+  padding: 0;
+  background: transparent;
+}
+
 .roulette-hint {
   margin: 0;
   color: var(--color-ink-muted);
@@ -1904,6 +1919,7 @@ textarea:focus-visible {
 
 .attribution-toggle {
   justify-self: start;
+  margin: 0;
   padding: var(--space-1) 0;
   border: 0;
   background: transparent;
@@ -2741,12 +2757,18 @@ textarea:focus-visible {
 
 .reflect-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* Side by side when both labels fit on one line; otherwise one per row. */
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
   gap: var(--space-2);
 }
 
 .reflect-actions .button-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
   margin: 0;
+  white-space: nowrap;
 }
 
 .reflect-close {

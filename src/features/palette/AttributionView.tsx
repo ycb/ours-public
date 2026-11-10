@@ -92,7 +92,8 @@ export function AttributionView({ revisions, currentMemberId, partners, children
         </div>
       ) : null}
 
-      {groups.length > 0 ? (
+      {/* Who wrote what only means something once both people have written. */}
+      {new Set(groups.map((group) => group.editorMemberId)).size > 1 ? (
         <button
           type="button"
           className="attribution-toggle"

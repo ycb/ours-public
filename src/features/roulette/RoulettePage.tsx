@@ -249,7 +249,7 @@ export function RoulettePanel({
           </button>
         ))}
       </div>
-    <div className={`spin-panel roulette reveal-${style}`}>
+    <div className={`spin-panel roulette reveal-${style}${candidate ? " has-result" : ""}`}>
       {error ? <p role="alert" className="form-error">{error}</p> : null}
       {/* Always mounted, so screen readers announce the text when it changes. */}
       <p role="status" className="roulette-status">

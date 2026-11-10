@@ -24,10 +24,10 @@ const revisions: AttributionRevision[] = [
   },
 ];
 
-const renderView = () =>
+const renderView = (shown: AttributionRevision[] = revisions) =>
   render(
     <AttributionView
-      revisions={revisions}
+      revisions={shown}
       currentMemberId={A}
       partners={[
         { id: A, display_name: "Synthetic Partner A", sort_order: 0 },
@@ -39,6 +39,12 @@ const renderView = () =>
   );
 
 describe("AttributionView", () => {
+  it("offers Who wrote what only once both people have written", () => {
+    renderView([revisions[0]]);
+    expect(screen.getByRole("textbox", { name: "Description" })).toBeVisible();
+    expect(screen.queryByRole("button", { name: "Who wrote what" })).not.toBeInTheDocument();
+  });
+
   it("keeps attribution hidden by default and reveals author text with the toggle", async () => {
     const user = userEvent.setup();
     renderView();
@@ -102,11 +108,21 @@ describe("AttributionView", () => {
             description: "Older synthetic line\nNewer synthetic line",
             created_at: "2026-10-24T12:00:00Z",
           },
+          {
+            revision_number: 3,
+            editor_member_id: B,
+            title: "Synthetic title",
+            description: "Older synthetic line\nNewer synthetic line\nPartner synthetic line",
+            created_at: "2026-10-25T12:00:00Z",
+          },
         ]}
         currentMemberId={A}
-        partners={[{ id: A, display_name: "Synthetic Partner A", sort_order: 0 }]}
+        partners={[
+          { id: A, display_name: "Synthetic Partner A", sort_order: 0 },
+          { id: B, display_name: "Synthetic Partner B", sort_order: 1 },
+        ]}
       >
-        <textarea aria-label="Description" defaultValue="Older synthetic line\nNewer synthetic line" />
+        <textarea aria-label="Description" defaultValue="Older synthetic line\nNewer synthetic line\nPartner synthetic line" />
       </AttributionView>,
     );
 
