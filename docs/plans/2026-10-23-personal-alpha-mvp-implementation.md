@@ -277,8 +277,7 @@ Out of scope:
 
 ## Source and Documentation References
 
-- Product context: `docs/HANDOFF.md`
-- Product brief: `docs/HANDOFF.md`
+- Product context: `README.md`
 - Detailed build contract: `docs/plans/2026-10-23-personal-alpha-mvp-design.md`
 - Project lessons: `docs/learnings.md`
 - Vite scaffold command: [Vite Getting Started](https://vite.dev/guide/).
@@ -1418,6 +1417,12 @@ To be filled during execution with command, date, and observed result. Required 
 ## Session Log
 
 Newest first. Every agent session ends with an entry (format in `AGENTS.md`).
+
+### 2026-11-10 11:25 PT — Claude
+- Done: README redrafted from scratch for the date-planning product (`6e864b8`); `docs/HANDOFF.md` removed, with the README as the product context; "Ready to plan" copy and one-line When chips (`bf3e388`); `npm run screenshots` content refreshed.
+- State: clean.
+- Verified with: `npm test` 281/281 and lint; e2e not yet re-run after the When chip layout change.
+- Next: Peter re-runs screenshots and `npm run test:e2e`; commit `docs/screenshots/*.png`.
 
 ### 2026-11-09 11:45 PT — Claude
 - Done: created this public edition from a snapshot of the private build (`8dc57a6` plus the decision-log commits), with fresh history. The product is repositioned around connection and shared time: Desires became Ideas and Play became Plan, in copy, routes (`/ideas`, `/plan`), identifiers, file names, and the `idea_shared` email kind. The rating keeps its four steps with neutral emoji (😐 🤔 🙂 🤩). `docs/HANDOFF.md` was rewritten as the product brief; the original strategy doc was removed; personal and hosting details were scrubbed from the plans; a README was added.

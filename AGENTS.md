@@ -6,7 +6,7 @@ documents below are the only shared memory.
 
 ## Read first, every session
 
-1. `docs/HANDOFF.md` — product mission, rules, and privacy boundaries.
+1. `README.md` — what the product is and why; privacy boundaries are under **Hard boundaries** below.
 2. `docs/plans/2026-10-23-personal-alpha-mvp-implementation.md` (the ExecPlan) — read
    **Progress**, **Session Log** (newest entry first), and the task you are about to start.
 3. `docs/plans/2026-10-25-interaction-model-v2.md`, then `docs/plans/2026-10-23-personal-alpha-mvp-design.md` — the build contract. Where they differ, v2 wins.
