@@ -1,4 +1,4 @@
-# Production email (QA 2026-11-03)
+# Production email
 
 Ours emails are content-free. A shared idea sends "Something new is waiting in Ours", and later
 activity sends "There are updates waiting in Ours". Each email links to the app, and the words come
@@ -90,7 +90,7 @@ set sealed_at = coalesce(sealed_at, now()), suppressed_at = now(), last_error_co
 where sent_at is null and suppressed_at is null;
 ```
 
-## Reflection reminders (QA 2026-11-03)
+## Reflection reminders
 
 The same scheduled call also sends at most one content-free reminder per person per date:
 "A moment to look back on, in Ours". It goes out once the date's ask-time has passed and that

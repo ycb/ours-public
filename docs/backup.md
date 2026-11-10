@@ -1,8 +1,8 @@
-# Backups (alpha)
+# Backups
 
 The hosted project is on Supabase's Free plan, which takes no backups for you. `scripts/backup.sh`
-makes an encrypted backup on demand. Run it from a Mac that has Docker and the linked repo
-(the MacBook Air):
+makes an encrypted backup on demand. Run it from a machine that has Docker and the repo linked to
+your project:
 
 ```bash
 scripts/backup.sh

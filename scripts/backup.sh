@@ -8,7 +8,7 @@
 #   dumps through a container), and the database password when asked.
 # - The dump is encrypted with a passphrase you choose (AES-256, openssl, built into macOS) as it is
 #   written: the plain SQL exists only in a private temporary folder and is deleted at the end.
-# - Restore: see docs/alpha-backup.md.
+# - Restore: see docs/backup.md.
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "$0")/.." && pwd)"

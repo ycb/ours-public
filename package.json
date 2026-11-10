@@ -1,5 +1,6 @@
 {
   "name": "ours",
+  "description": "Plan time together, for two.",
   "private": true,
   "version": "0.0.0",
   "type": "module",
