@@ -16,7 +16,7 @@ const OUT = "docs/screenshots";
 const PHONE = { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 };
 
 const HIKE = "Sunrise hike to the lookout";
-const COOK = "Dumpling night from scratch";
+const COOK = "Dumpling night";
 const DANCE = "Beginner dance class";
 const PHONES = "A weekend with our phones off";
 const LETTERS = "Letters to open in a year";
