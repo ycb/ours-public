@@ -169,3 +169,6 @@ private-backups/
 
 # Agent plans and session logs stay local (see AGENTS.md)
 docs/plans/
+
+# Screenshot pieces; only the composed docs/screenshots/ours.png is committed
+docs/screenshots/0*.png
