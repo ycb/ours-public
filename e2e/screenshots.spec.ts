@@ -173,7 +173,7 @@ test("README screenshots", async ({ browser }) => {
   await strip.setContent(`<body style="margin:0;background:transparent">
     <div style="display:flex;gap:24px">
       <div style="${tile}"><img src="${src("01-idea")}" style="width:390px;display:block"></div>
-      <div style="${tile};display:flex;align-items:center;box-sizing:border-box"><img src="${src("02-deck")}" style="width:100%;display:block"></div>
+      <div style="${tile};display:flex;align-items:center;padding:0 16px;box-sizing:border-box"><img src="${src("02-deck")}" style="width:100%;display:block"></div>
       <div style="${tile}"><img src="${src("03-reflect")}" style="width:390px;display:block"></div>
     </div></body>`);
   await strip.waitForTimeout(300);
