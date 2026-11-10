@@ -7,7 +7,7 @@ What if technology enhanced our most valued connections, instead of distracting 
 I built a PWA for couples to make and discuss plans together. Share ideas, see where interest is
 mutual, align, and make it happen. Afterwards, reflect on the experience and create variations.
 
-<img src="docs/screenshots/ours.png" alt="One idea, Dumpling night: agreed by both, dealt as a date for tonight, then looked back on together">
+<img src="docs/screenshots/ours.png" alt="One idea, Dumpling night: agreed by both, then dealt from the deck of ideas you both chose, then looked back on together">
 
 ## What's different
 

@@ -131,25 +131,21 @@ test("README screenshots", async ({ browser }) => {
   await expect.poll(() => decision(dance, SAM.memberId)).toBe("not_now");
   void [stars, phones, letters];
 
-  // ---------- One idea, three views: agreed, dealt and dated, looked back on ----------
+  // ---------- One idea, three views: agreed, the deck it's dealt from, looked back on ----------
   await alex.goto(`/ideas/${cook}`);
   await expect(alex.getByText(/You.re both in/)).toBeVisible();
   await shot(alex, "01-idea");
 
   await alex.goto("/plan");
   await alex.getByRole("group", { name: "Filter ideas" }).getByRole("button", { name: "At home" }).click();
+  await alex.mouse.move(0, 0);
+  await alex.waitForTimeout(600);
+  await alex.locator(".spin-panel").screenshot({ path: `${OUT}/02-deck.png` });
   await alex.getByRole("button", { name: "Deal a card" }).click();
   await expect(alex.getByRole("heading", { level: 2, name: COOK })).toBeVisible();
   await alex.getByRole("button", { name: "Let's do it" }).click();
   await alex.getByRole("group", { name: "When?" }).getByRole("button", { name: "Tonight" }).click();
   await expect(alex.getByRole("group", { name: "When?" }).getByRole("button", { name: "Tonight" })).toHaveAttribute("aria-pressed", "true");
-  await alex.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
-  await alex.waitForTimeout(600);
-  {
-    // The dealt card and its controls, with room for the card's shadow to fall on the page.
-    const box = (await alex.locator(".spin-panel").boundingBox())!;
-    await alex.screenshot({ path: `${OUT}/02-date.png`, clip: { x: box.x - 16, y: box.y - 24, width: box.width + 32, height: box.height + 48 } });
-  }
 
   await sam.goto("/plan");
   await sam.getByRole("button", { name: `Up next: ${COOK}, Tonight` }).click();
@@ -177,7 +173,7 @@ test("README screenshots", async ({ browser }) => {
   await strip.setContent(`<body style="margin:0;background:transparent">
     <div style="display:flex;gap:24px">
       <div style="${tile}"><img src="${src("01-idea")}" style="width:390px;display:block"></div>
-      <div style="${tile};display:flex;align-items:center;box-sizing:border-box"><img src="${src("02-date")}" style="width:100%;display:block"></div>
+      <div style="${tile};display:flex;align-items:center;box-sizing:border-box"><img src="${src("02-deck")}" style="width:100%;display:block"></div>
       <div style="${tile}"><img src="${src("03-reflect")}" style="width:390px;display:block"></div>
     </div></body>`);
   await strip.waitForTimeout(300);
