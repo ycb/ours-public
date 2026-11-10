@@ -128,7 +128,7 @@ export function ResponseControls({ itemId, responses, partners, currentMemberId,
 
       {agreed ? (
         <Link to="/plan" className="both-in">
-          ✓ You&apos;re both in · It&apos;s in Plan
+          ✓ You&apos;re both in · Ready to plan
         </Link>
       ) : null}
 

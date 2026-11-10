@@ -15,7 +15,7 @@ const OUT = "docs/screenshots";
 const PHONE = { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 };
 
 const HIKE = "Sunrise hike to the lookout";
-const COOK = "Cook a cuisine neither of us has tried";
+const COOK = "Dumpling night from scratch";
 const DANCE = "Beginner dance class";
 const PHONES = "A weekend with our phones off";
 const LETTERS = "Letters to open in a year";
@@ -64,6 +64,7 @@ async function imIn(page: Page, itemId: string, memberId: string, rating?: strin
 }
 
 async function shot(page: Page, name: string) {
+  await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
   await page.waitForTimeout(600);
   await page.screenshot({ path: `${OUT}/${name}.png` });
 }
@@ -86,7 +87,7 @@ test("README screenshots", async ({ browser }) => {
   });
   const cook = await share(alex, SAM.name, {
     title: COOK,
-    description: "Pick a country at random, shop for it together, cook with music on.",
+    description: "Fold them together, a cuisine neither of us has cooked. Music on, flour everywhere.",
     category: "At home",
     newCategory: true,
     rating: "Into it",
